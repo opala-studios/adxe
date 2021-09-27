@@ -102,7 +102,7 @@ HttpClient::HttpClient()
     , _timeoutForConnect(30)
     , _timeoutForRead(60)
     , _cookie(nullptr)
-    , _clearResponsePredicate(nullptr) 
+    , _clearResponsePredicate(nullptr)
 {
     CCLOG("In the constructor of HttpClient!");
     _scheduler = Director::getInstance()->getScheduler();
@@ -139,7 +139,7 @@ void HttpClient::setDispatchOnWorkThread(bool bVal)
 {
     _scheduler->unscheduleAllForTarget(this);
     _dispatchOnWorkThread = bVal;
-    if(!bVal) 
+    if(!bVal)
         _scheduler->schedule([=](float) { dispatchResponseCallbacks(); }, this, 0, false, "#");
 }
 
@@ -236,6 +236,9 @@ void HttpClient::handleNetworkEvent(yasio::io_event* event) {
             case HttpRequest::Type::PUT:
                 obs.write_bytes("PUT");
                 usePostData = true;
+                break;
+            case HttpRequest::Type::PATCH:
+                obs.write_bytes("PATCH");
                 break;
             default:
                 obs.write_bytes("GET");

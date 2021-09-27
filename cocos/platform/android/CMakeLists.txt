@@ -2,7 +2,7 @@
 set(target_name cpp_android_spec)
 
 project(${target_name})
-
+message("AndroidAAAA ${target_name}")
 set(${target_name}_src
   CCDevice-android.cpp
   javaactivity-android.cpp

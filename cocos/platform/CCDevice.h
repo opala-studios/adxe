@@ -66,7 +66,7 @@ public:
      *  @return The DPI of device.
      */
     static int getDPI();
-    
+
     /**
      * To enable or disable accelerometer.
      */

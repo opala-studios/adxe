@@ -44,6 +44,10 @@ public:
     float getTimeScale() const { return _timeScale; }
     void setTimeScale(float value);
 
+    float getTotalDuration() const{
+        return _totalDuration;
+    }
+
     void updateFromRelations(const std::string& targetId, float dx, float dy);
     void onOwnerAddedToStage();
     void onOwnerRemovedFromStage();

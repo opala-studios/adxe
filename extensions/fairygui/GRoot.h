@@ -20,6 +20,7 @@ public:
 
     static GRoot* create(cocos2d::Scene* scene, int zOrder = 1000);
     static GRoot* getInstance() { return _inst; }
+    static void setInstance(GRoot* root) { _inst = root; }
 
     void showWindow(Window* win);
     void hideWindow(Window* win);
@@ -39,7 +40,7 @@ public:
     InputProcessor* getInputProcessor() const { return _inputProcessor; }
     cocos2d::Vec2 getTouchPosition(int touchId);
     GObject* getTouchTarget();
-    
+
     cocos2d::Vec2 worldToRoot(const cocos2d::Vec2 &pt);
     cocos2d::Vec2 rootToWorld(const cocos2d::Vec2 &pt);
 
@@ -57,6 +58,8 @@ public:
     void hideTooltips();
 
     void playSound(const std::string& url, float volumeScale = 1);
+    virtual void playSound(fairygui::PackageItem* item, float volumeScale) {};
+
     bool isSoundEnabled() const { return _soundEnabled; }
     void setSoundEnabled(bool value);
     float getSoundVolumeScale() const { return _soundVolumeScale; }
@@ -68,9 +71,9 @@ protected:
     virtual void handlePositionChanged() override;
     virtual void onEnter() override;
     virtual void onExit() override;
-
-private:
     bool initWithScene(cocos2d::Scene* scene, int zOrder);
+private:
+
     void onWindowSizeChanged();
     void createModalLayer();
     void adjustModalLayer();
